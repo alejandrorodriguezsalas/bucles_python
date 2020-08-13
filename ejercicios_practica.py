@@ -24,7 +24,7 @@ temp_dataloger = [12.8, 18.6, 14.5, 20.8, 12.1, 21.2, 13.5, 18.6,
 
 
 def ej1():
-    print('Comenzamos a ponernos serios!')
+    print('     Ej1:Comenzamos a ponernos serios!')
 
     '''
     Realice un programa que pida por consola dos números que representen
@@ -35,22 +35,29 @@ def ej1():
     sino que va hasta el anterior
     '''
 
-    # inicio = ....
-    # fin = ....
+    inicio = int(input('Ingrese el número inicial de la secuencia:  '))
+    fin = int(input('Ingerese el número fianl de la secuencia:  '))
 
-    # cantidad_numeros ....
-    # sumatoria ....
+    cont = 0
+    acum = 0
 
-    # bucle.....
+    for i in range(inicio,fin+1):
+        acum += i
+        cont += 1
+
+    print("\nLa suamatoría de los núemros dentro de rango es: ",acum)
+    print("La cantidad de números dentro del rango es: ",cont)
 
     # Al terminar el bucle calcular el promedio como:
-    # promedio = sumatoria / cantidad_numeros
-
+    # promedio = sumatoria / cantidad_numeros    
+    prom = acum / cont
+    
     # Imprimir resultado en pantalla
+    print('El promedio de la secuencía de numeros entre {} y {} es: {}\n'.format(inicio,fin,prom))
 
 
 def ej2():
-    print("Mi Calculadora (^_^)")
+    print("\n\n     Ej2:Mi Calculadora (^_^)")
 
     '''
     Tome el ejercicio de clase:
@@ -63,9 +70,53 @@ def ej2():
     alguno de lo soportados o no es la palabra "FIN"
     '''
 
+    
+    op_menu = 'inicia'  #inicialización de la opción menu
+    op_num = 'N'        #inicialización de la opción número
+    print("Ingrese dos números:")
+    num_1 = float(input())
+    num_2 = float(input())
+
+    while op_menu != 'FIN' and op_menu != 'fin':
+        print('''\nIngrese el simbolo de la operación que desee realizar:
+        - Suma (+)
+        - Resta (-)
+        - Multiplicación (*)
+        - División (/)
+        - Exponente/Potencia (**)
+        
+        - FIN para salir''')
+        op_menu = str(input())
+
+        if (op_menu != '+' and op_menu != '-' and op_menu != '*' and op_menu != '/' 
+        and op_menu != '**' and op_menu !='FIN' and op_menu !='fin'):
+           print("ERROR! Ingrese una opción valida del menu")
+           continue
+        elif op_menu == '+':
+            print("SUMA:\n{} + {} = {}".format(num_1,num_2,num_1+num_2))
+        elif op_menu == '-':
+            print("RESTA:\n{} - {} = {}".format(num_1,num_2,num_1-num_2))
+        elif op_menu == '*':
+            print("MULTIPLICACIÓN:\n{} x {} = {}".format(num_1,num_2,num_1*num_2))
+        elif op_menu == '/':
+            print("DIVISIÓN:\n{} : {} = {}".format(num_1,num_2,num_1/num_2))
+        elif op_menu == '**':
+            print("POTENCIA:\n{} ^ {} = {}".format(num_1,num_2,num_1**num_2))
+       
+        if op_menu != 'fin' and op_menu != 'FIN':
+            op_num = str(input('¿Desea ingresar otro par de números? S/N   '))
+            while (op_num != 's' and op_num != 'S' 
+                and op_num != 'N' and op_num != 'n'):
+                op_num = str(input('ERROR! Ingrese S/N   '))
+            
+            if op_num == 'S' or op_num == 's':
+                print("Ingrese dos números:")
+                num_1 = float(input())
+                num_2 = float(input())
+
 
 def ej3():
-    print("Mi organizador académico (#_#)")
+    print("\n\n     Ej3:Mi organizador académico (#_#)")
 
     '''
     Tome el ejercicio de "calificaciones":
@@ -85,28 +136,56 @@ def ej3():
 
     Debe contar la cantidad de notas válidas y la cantidad de ausentes
     '''
-
+    
+        
     # Para calcular el promedio primero debe obtener la suma
     # de todas las notas, que irá almacenando en esta variable
-    sumatoria = 0           # Ya le hemos inicializado en 0
+    acum = 0           # Ya le hemos inicializado en 0
 
-    cantidad_notas = 0      # Aquí debe contar cuantas notas válidas encontró
-    cantidad_ausentes = 0   # Aquí debe contar cuantos ausentes hubo
+    cant_notas = 0      # Aquí debe contar cuantas notas válidas encontró
+    cant_ausentes = 0   # Aquí debe contar cuantos ausentes hubo
 
     # Realice aquí el bucle para recorrer todas las notas
     # y cacular la sumatoria
+    print('Notas del alumno:\n',notas)
+
+    for i in range(len(notas)):
+        if notas[i] >= 0:
+            acum += notas[i]
+            cant_notas += 1
+        else:
+            cant_ausentes += 1
+
 
     # Terminado el bucle calcule el promedio como
     # promedio = sumatoria / cantidad_notas
 
+    nota_prom = acum/cant_notas
+
+    print('Nota promedio del alumno:  ',nota_prom)
+
     # Utilice la nota promedio calculada y transformela
     # a calificación con letras, imprima en pantalla el resultado
+    print('La calificación del alumno es:')
+    
+    if nota_prom >= 90:
+        print("A")
+    elif nota_prom >= 80:
+        print("B")
+    elif nota_prom >= 70:
+        print("C")
+    elif nota_prom >= 60:
+        print("D")
+    else:
+        print("F")
 
     # Imprima en pantalla al cantidad de ausentes
 
+    print('Ausente: ',cant_ausentes)
+
 
 def ej4():
-    print("Mi primer pasito en data analytics")
+    print("\n\nMi primer pasito en data analytics")
 
     '''
     Tome el ejercicio:
@@ -137,7 +216,10 @@ def ej4():
     durante la clase (ejemplos_clase)
     '''
 
-    temperatura_max = None      # Aquí debe ir almacenando la temp máxima
+    print('\n     Ej4:Mediciones de temperatura en Bs As')
+    print('Temperaturas [ºC]: ',temp_dataloger)
+
+    temperatura_max = None     # Aquí debe ir almacenando la temp máxima
     temperatura_min = None      # Aquí debe ir almacenando la temp mínima
     temperatura_sumatoria = 0   # Aquí debe ir almacenando la suma de todas las temp
     temperatura_promedio = 0    # Al finalizar el loop deberá aquí alamcenar el promedio
@@ -145,18 +227,39 @@ def ej4():
 
     # Colocar el bucle aqui......
 
+    for i in range(len(temp_dataloger)):
+        if (temperatura_max is None) or (temp_dataloger[i] > temperatura_max):
+            temperatura_max = temp_dataloger[i]
+        if (temperatura_min is None) or (temp_dataloger[i] < temperatura_min):
+            temperatura_min = temp_dataloger[i]
+        temperatura_sumatoria += temp_dataloger[i]
+        temperatura_len += 1
+    
+    print('Temperatura máx: {}ºC'.format(temperatura_max))
+    print('Temperatura min: {}ºC'.format(temperatura_min))
+    
+
     # Al finalizar el bucle compare si el valor que usted calculó para
     # temperatura_max y temperatura_min coincide con el que podría calcular
     # usando la función "max" y la función "min" de python
     # función "max" --> https://www.w3schools.com/python/ref_func_max.asp
     # función "min" --> https://www.w3schools.com/python/ref_func_min.asp
 
+    print('Temperatura máxima con funciones de python: {}ºC'.format(max(temp_dataloger)))
+    print('Temperatura minima con funciones de python: {}ºC'.format(min(temp_dataloger)))
+
+
     # Al finalizar el bucle debe calcular el promedio como:
-    # temperatura_promedio = temperatura_sumatoria / cantidad_temperatuas
+    temperatura_promedio = temperatura_sumatoria / temperatura_len
+
+    print('\nLa temperatura promedio de la temporada fue de: {}ºC'.format(temperatura_promedio))
 
     # Corroboren los resultados de temperatura_sumatoria
     # usando la función "sum"
     # función "sum" --> https://www.w3schools.com/python/ref_func_sum.asp
+
+    print('\nSumatoria de temperatura: {}ºC'.format(temperatura_sumatoria))
+    print('Sumatoria de temperatura con funciones de python: {}ºC'.format(sum(temp_dataloger)))
 
     '''
     Una vez que tengamos nuestros valores correctamente calculados debemos
@@ -178,9 +281,20 @@ def ej4():
     # Imprima el resultado en pantalla
     # Debe utilizar temperatura_max y temperatura_min para definirlo
 
+    print('\nSegún los datos de la lista se midieron en la temporada de: ')
+
+    if temperatura_min > 19  and temperatura_max < 28:
+        print('VERANO')
+    elif temperatura_min > 11 and temperatura_max < 24:
+        print('OTOÑO')
+    elif temperatura_min > 10 and temperatura_max < 24:
+        print('PRIMAVERA')
+    elif temperatura_min > 8 and temperatura_max < 14:
+        print('INVIERNO')
+
 
 def ej5():
-    print("Ahora sí! buena suerte :)")
+    print("\nAhora sí! buena suerte :)")
 
     '''
     Tome el ejercicio:
@@ -244,13 +358,68 @@ def ej5():
     3- Otro bucle interno que corre luego de que termine el bucle "2" que
        recorre la lista de palabras y busca la mayor según el motivo ingresado ("1" o "2")
 
-  '''
+    '''
+    print("\n\n     Ej5:Orden de palabras")
+    print('Ingrese la tarea que desee realizar del menu')  
+    palabras = []
+
+    while True:
+        palabras.clear()
+        print('''            
+                    MENU
+        1 - Ordenar por orden alfabético 
+        2 - Ordenar por cantidad de letras 
+        3 - Salir del programa\n''')
+
+        opc = str(input('Ingrese el número opcion deseada:  '))
+
+        if opc != '1' and opc != '2' and opc !='3':
+            print('la opción es incorrecta, por favor ingrese una opción valida al menu que se detalla')
+            continue
+        elif opc == '3':
+            print('FIN DEL PROGRAMA, ADÍOS!!')
+            break
+
+        cant_pal = int(input('\nIngrese la cantidad de palabras con las que desea trabajar:  '))
+
+        for i in range(cant_pal):
+            palabras.append(str(input('Ingerese {}º palabra\n'.format(i+1))))
+        if opc == '1':
+            print('\nEl orden alfabetico de las palabras ingresadas es:')
+
+            for i in range(len(palabras)):
+                for t in range(len(palabras)):
+                    if palabras[t] < palabras[i]:
+                        aux = palabras[i]
+                        palabras[i] = palabras[t]
+                        palabras[t] = aux
+            print(palabras)
+            continue
+        
+        else:
+            print('\nEl orden de las palabras segun la cantidad de letras es:')
+            for i in range(len(palabras)):
+                for t in range(len(palabras)):
+                    if len(palabras[t]) < len(palabras[i]):
+                        aux = palabras[i]
+                        palabras[i] = palabras[t]
+                        palabras[t] = aux
+            print(palabras)
+            continue
+
+
+
+
+    
+
+  
 
 
 if __name__ == '__main__':
-    print("Ejercicios de práctica")
-    #ej1()
-    #ej2()
-    #ej3()
-    #ej4()
-    #ej5()
+    print("\n                   Ejercicios de práctica\n")
+    ej1()
+    ej2()
+    ej3()
+    ej4()
+    ej5()
+    print("\n\n********************* FIN DE EJERCICOS *********************")
